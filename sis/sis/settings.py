@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-CHANGE-ME')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # TODO: change this to "False" when ready.
 
-ALLOWED_HOSTS = ['awael1.pythonanywhere.com']
+ALLOWED_HOSTS = ['awael1.pythonanywhere.com', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://awael1.pythonanywhere.com']
 
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
+
 ]
 
 MIDDLEWARE = [
