@@ -14,3 +14,10 @@ db.sqlite3
 media/
 staticfiles/
 .env
+
+# related
+_bmad*/
+.agents/
+.opencode/
+.vscode/
+docs/
