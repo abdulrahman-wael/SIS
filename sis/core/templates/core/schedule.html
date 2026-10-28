@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %} schedule {% endblock %}
+
+{% block body %}
+{% if week %}
+  <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">          {# added: card wrapper #}
+    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+      <h2 class="text-xl font-semibold">Weekly schedule</h2>
+      <span class="text-gray-500">{{ week.week_start }} — published</span>          {# added: week context #}
+    </div>
+    <table class="w-full text-sm border-collapse">                                   {# changed: was bare <table> #}
+      <thead>
+        <tr class="bg-gray-50 text-left">
+          <th class="px-4 py-3 font-medium text-gray-500"></th>                      {# added: corner cell #}
+          {% for h in hours %}                                                       {# added: hour columns #}
+            <th class="px-4 py-3 font-medium text-gray-500">{{ h }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for day_label, row in pairs %}
+          <tr class="border-t border-gray-200">
+            <th class="px-4 py-3 font-medium text-gray-700">{{ day_label }}</th>     {# changed: day label in row head #}
+            {% for cell in row %}
+              <td class="px-4 py-3 border-l border-gray-100">
+                {% if cell %}
+                  <span class="inline-block px-3 py-1 rounded-lg bg-violet-100 text-violet-700">{{ cell }}</span>  {# changed: course as pill #}
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-gray-500 py-10 text-center">No schedule published yet.</p>          {# added: empty state #}
+{% endif %}
+{% endblock %}

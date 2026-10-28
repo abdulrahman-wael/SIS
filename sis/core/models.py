@@ -49,8 +49,11 @@ class WeeklySchedule(models.Model):
     candidate_group = models.PositiveSmallIntegerField(null=True, blank=True)
 
 class ScheduledSlot(models.Model):
-    weekly_schedule = models.ForeignKey(WeeklySchedule, on_delete=models.CASCADE)
+    weekly_schedule = models.ForeignKey(WeeklySchedule, on_delete=models.CASCADE, related_name='slots')
     course_assignment = models.ForeignKey(CourseAssignment, on_delete=models.PROTECT)
     day_of_week = models.PositiveSmallIntegerField(choices=Day.choices)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+    class Meta:
+        ordering = ['day_of_week', 'start_time']
