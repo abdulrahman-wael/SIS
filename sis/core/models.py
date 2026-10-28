@@ -35,7 +35,7 @@ class AvailabilitySlot(models.Model):
     end_time = models.TimeField()
 
     def __str__(self):
-        return str(self.teacher) + '_' + str(self.day_of_week)
+        return 'unavailable_' + self.get_day_of_week_display()
 
 class WeeklySchedule(models.Model):
     CATEGORY_CHOICES = [
